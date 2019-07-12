@@ -103,13 +103,11 @@ export default {
   },
   methods: {
     async copyTailwindConfig () {
-      console.log('jauda')
       try {
         await navigator.clipboard.writeText(this.tailwindConfig)
       } catch (error) {
-        console.log(error)
+        alert(error)
       }
-      console.log('success copy')
     },
     saveTailwindConfig () {
       const file = new Blob([this.tailwindConfig], { type: 'text/plain' })
