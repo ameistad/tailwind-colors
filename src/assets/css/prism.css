@@ -1,7 +1,8 @@
 /**
- * Basedd on atom-dark theme for `prism.js`
+ * Based on atom-dark theme for `prism.js`
  */
 
+ /* purgecss start ignore */
 code[class*="language-"],
 pre[class*="language-"] {
   /* color: #c5c8c6; */
@@ -131,3 +132,4 @@ pre[class*="language-"] {
 .token.italic {
 	font-style: italic;
 }
+/* purgecss end ignore */
