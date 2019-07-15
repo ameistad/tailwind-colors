@@ -54,7 +54,6 @@
         >
           <icon-meidev />
         </icon-base>
-        mei<span class="font-bold">dev</span>
       </a>
       <p class="text-sm my-4">
         Comments and issues are very welcome, post them at <a href="https://www.github.com/ameistad/tailwind-colors" class="underline text-blue-800">Github repository</a>.
