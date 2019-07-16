@@ -120,6 +120,9 @@ export default {
     handleAddConfig (colors) {
       this.colors = [...colors, ...this.colors]
     }
+  },
+  mounted () {
+    this.$ga.page('/')
   }
 }
 </script>

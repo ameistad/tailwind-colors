@@ -7,14 +7,9 @@ import App from './App.vue'
 import '@/assets/css/prism.css'
 import '@/assets/css/tailwind.css'
 import '@/assets/css/base.css'
-const isProduction = process.env.NODE_ENV === 'production'
 
 Vue.use(VueAnalytics, {
-  id: 'UA-132852969-3',
-  debug: {
-    enabled: !isProduction,
-    sendHitTask: isProduction
-  }
+  id: 'UA-132852969-3'
 })
 
 Vue.config.productionTip = false
