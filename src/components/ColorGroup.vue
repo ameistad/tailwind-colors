@@ -1,7 +1,7 @@
 <template>
   <div class="mr-6 bg-white rounded p-4">
-    <div class="flex justify-between mb-6 pr-24">
-      <div class="flex items-center">
+    <div class="md:flex md:justify-content mb-6">
+      <div class="flex items-center mb-2 md:mb-0">
         <icon-base
           id="color-draggable-handle"
           height="25"

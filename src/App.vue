@@ -2,8 +2,8 @@
   <main class="flex flex-col min-h-screen mx-4 lg:mx-12" id="app">
     <header class="flex justify-between items-center my-12">
       <div class="flex items-center">
-        <logo class="w-12 h-12 mr-2" />
-        <h1 class="text-4xl font-semibold">tailwind colors</h1>
+        <logo class="w-6 h-6 md:w-12 md:h-12 mr-2" />
+        <h1 class="text-xl md:text-4xl font-semibold">tailwind colors</h1>
       </div>
       <div>
         <a href="https://github.com/ameistad/tailwind-colors">
@@ -17,7 +17,7 @@
     </header>
 
     <div class="flex-grow flex flex-col md:flex-row">
-      <div class="w-2/3">
+      <div class="md:w-1/2 lg:w-2/3">
         <div class="mb-6">
           <add-color @add-color="handleAddColor" />
         </div>
@@ -37,7 +37,7 @@
           />
         </draggable>
       </div>
-      <div class="w-1/3">
+      <div class="md:1/2 lg:w-1/3">
         <color-config
           :colors="colors"
           @add-config="handleAddConfig"
