@@ -4,14 +4,14 @@
       <div class="flex">
         <button
           :class="{ 'bg-gray-800 text-gray-100': override }"
-          class="rounded-t py-1 px-4  cursor-pointer focus:outline-none"
+          class="rounded-t py-1 px-4  cursor-pointer focus:outline-none focus:shadow-outline"
           @click="override = true"
         >
           Override
         </button>
         <button
           :class="{ 'bg-gray-800 text-gray-100': !override }"
-          class="rounded-t py-1 px-4 cursor-pointer focus:outline-none"
+          class="rounded-t py-1 px-4 cursor-pointer focus:outline-none focus:shadow-outline"
           @click="override = false"
         >
           Extend
@@ -20,12 +20,14 @@
       <div class="flex items-center">
         <load-config @add-config="handleAddConfig" />
         <button
-          class="mr-2"
+          class="mr-2 focus:outline-none focus:shadow-outline"
           @click="copyTailwindConfig"
         >
           Copy
         </button>
-        <button @click="saveTailwindConfig">
+        <button
+          class="focus:outline-none focus:shadow-outline"
+          @click="saveTailwindConfig">
           Save
         </button>
       </div>

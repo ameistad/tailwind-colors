@@ -1,6 +1,6 @@
 <template>
   <dropdown
-    trigger-css-class="inline-flex items-center focus:outline-none mr-2"
+    trigger-css-class="inline-flex items-center focus:outline-none focus:shadow-outline mr-2"
     :close-when-clicked="true"
   >
     <template
@@ -9,26 +9,24 @@
       Load
     </template>
     <template slot="dropdown-content">
-      <div  class="bg-white rounded shadow">
-        <ul>
-          <li>
-            <button
-              @click="$emit('add-config', createColorArray(defaultConfig))"
-              class="flex focus:outline-none hover:bg-gray-200 py-2 px-4 w-full"
-            >
-              Default Config
-            </button>
-          </li>
-          <li>
-            <button
-              class="flex focus:outline-none hover:bg-gray-200 py-2 px-4 w-full"
-              @click="$refs.selectConfig.click()"
-            >
-              Import tailwind config
-            </button>
-          </li>
-        </ul>
-      </div>
+      <ul class="bg-white rounded shadow">
+        <li>
+          <button
+            @click="$emit('add-config', createColorArray(defaultConfig))"
+            class="flex focus:outline-none hover:bg-gray-200 py-2 px-4 w-full"
+          >
+            Default Config
+          </button>
+        </li>
+        <li>
+          <button
+            class="flex focus:outline-none hover:bg-gray-200 py-2 px-4 w-full"
+            @click="$refs.selectConfig.click()"
+          >
+            Import tailwind config
+          </button>
+        </li>
+      </ul>
       <input
           hidden
           ref="selectConfig"
