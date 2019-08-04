@@ -1,7 +1,6 @@
 <template>
-  <div class="flex items-center mr-4 mb-8 p-1 bg-white rounded shadow">
+  <div class="flex mr-4 mb-8 p-1 bg-white rounded shadow">
     <div
-      id="shade-draggable-handle"
       :style="{ background: shade.hexCode }"
       class="h-12 w-12 rounded shadow-inner cursor-pointer mr-2"
     />
@@ -17,7 +16,7 @@
         class="outline-none mb-1"
       />
     </div>
-    <div class="-mt-6 mr-1">
+    <div class="flex flex-col justify-between">
       <button
         @click="$emit('delete-shade', shade.index   )"
       >
@@ -29,6 +28,14 @@
           <icon-delete />
         </icon-base>
       </button>
+      <icon-base
+        id="shade-draggable-handle"
+        height="20"
+        width="20"
+        class="ml-3"
+      >
+        <icon-drag />
+      </icon-base>
     </div>
   </div>
 </template>
@@ -37,12 +44,14 @@
 import ColorPicker from '@/components/ColorPicker'
 import IconBase from '@/components/icons/IconBase'
 import IconDelete from '@/components/icons/IconDelete'
+import IconDrag from '@/components/icons/IconDrag'
 
 export default {
   components: {
     ColorPicker,
     IconBase,
-    IconDelete
+    IconDelete,
+    IconDrag
   },
   props: {
     colorName: {
@@ -58,8 +67,6 @@ export default {
     name: {
       get () { return this.shade.name },
       set (name) {
-        console.log(name)
-        console.log(typeof name)
         this.$emit('update-shade', { ...this.shade, name })
       }
     },
