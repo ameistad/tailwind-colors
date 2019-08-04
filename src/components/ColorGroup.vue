@@ -19,19 +19,10 @@
         />
       </div>
       <div class="flex items-center">
-        <button
-          class="flex items-center mr-6"
-          @click="$emit('add-shade', color.index)"
-        >
-          <icon-base
-            icon-name="Add"
-            height="20"
-            width="20"
-          >
-            <icon-add />
-          </icon-base>
-          <span class="text-sm">Add Shade</span>
-        </button>
+        <add-shade
+          :color="color"
+          @update-shades="handleUpdateShades"
+        />
         <button
           @click="$emit('delete', color.index)"
           class="flex items-center"
@@ -66,10 +57,10 @@
 
 <script>
 import Draggable from 'vuedraggable'
-import ColorShade from './ColorShade'
+import ColorShade from '@/components/ColorShade'
+import AddShade from '@/components/AddShade'
 import IconBase from '@/components/icons/IconBase'
 import IconDrag from '@/components/icons/IconDrag'
-import IconAdd from '@/components/icons/IconAdd'
 import IconDelete from '@/components/icons/IconDelete'
 
 function capitalize (str) {
@@ -80,9 +71,9 @@ export default {
   components: {
     Draggable,
     ColorShade,
+    AddShade,
     IconBase,
     IconDrag,
-    IconAdd,
     IconDelete
   },
   props: {
@@ -107,14 +98,17 @@ export default {
     },
     shades: {
       get () { return this.color.shades },
-      set (shades) { this.$emit('update-shade', { colorIndex: this.color.index, shades }) }
+      set (shades) { this.$emit('update-shades', { colorIndex: this.color.index, shades }) }
     }
   },
   methods: {
     handleUpdateShade (shade) {
       const shades = [...this.color.shades]
       shades[shade.index] = shade
-      this.$emit('update-shade', { colorIndex: this.color.index, shades })
+      this.$emit('update-shades', { colorIndex: this.color.index, shades })
+    },
+    handleUpdateShades (shades) {
+      this.$emit('update-shades', { colorIndex: this.color.index, shades })
     },
     handleDeleteShade (shadeIndex) {
       this.color.shades.splice(shadeIndex, 1)

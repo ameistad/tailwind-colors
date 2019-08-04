@@ -7,13 +7,13 @@
       slot="dropdown-trigger"
     >
       <icon-base
-        height="25"
-        width="25"
+        height="20"
+        width="20"
       >
         <icon-add />
       </icon-base>
-      <span class="text-xl font-semibold">
-        Add Color
+      <span class="font-semibold">
+        Default colors
       </span>
     </template>
     <template slot="dropdown-content">

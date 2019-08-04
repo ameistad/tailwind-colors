@@ -31,8 +31,7 @@
             :color="{ ...color, index }"
             :colors-length="colors.length"
             @update-color="handleUpdateColor"
-            @add-shade="handleAddShade"
-            @update-shade="handleUpdateShade"
+            @update-shades="handleUpdateShades"
             @delete="handleDelete"
           />
         </draggable>
@@ -96,22 +95,7 @@ export default {
     handleUpdateColor (color) {
       this.$set(this.colors, color.index, color)
     },
-    handleAddShade (colorIndex) {
-      const color = this.colors[colorIndex]
-      const lastShadeNumber = [...color.shades].reverse().find(shade => typeof shade.name === 'number')
-      if (lastShadeNumber) {
-        this.colors[colorIndex].shades.push({ name: lastShadeNumber.name + 100, hexCode: '#474747' })
-      } else if (color.shades.length === 1 && !color.shades[0].name) {
-        const shades = [
-          { name: 100, hexCode: color.shades[0].hexCode },
-          { name: 200, hexCode: '#474747' }
-        ]
-        this.colors[colorIndex].shades = shades
-      } else {
-        this.colors[colorIndex].shades.push({ name: '', hexCode: '#474747' })
-      }
-    },
-    handleUpdateShade ({ colorIndex, shades }) {
+    handleUpdateShades ({ colorIndex, shades }) {
       this.colors[colorIndex].shades = shades
     },
     handleDelete (colorIndex) {

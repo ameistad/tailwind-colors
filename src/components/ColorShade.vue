@@ -7,13 +7,13 @@
     />
     <div class="flex flex-col text-xs">
       <input
-        v-model="name"
+        v-model.trim.number="name"
         placeholder="..."
         type="text"
         class="outline-none mb-1"
       />
       <color-picker
-        v-model="hexCode"
+        v-model.trim="hexCode"
         class="outline-none mb-1"
       />
     </div>
@@ -57,7 +57,11 @@ export default {
   computed: {
     name: {
       get () { return this.shade.name },
-      set (name) { this.$emit('update-shade', { ...this.shade, name }) }
+      set (name) {
+        console.log(name)
+        console.log(typeof name)
+        this.$emit('update-shade', { ...this.shade, name })
+      }
     },
     hexCode: {
       get () { return this.shade.hexCode },
