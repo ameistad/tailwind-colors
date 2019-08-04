@@ -125,7 +125,7 @@ export default {
           this.$emit('update-shades', [...this.color.shades, { name, hexCode: adjustShade(lastShade.hexCode, -20) }])
         }
       } else {
-        this.$emit('update-shades', [...this.color.shades, { name: 500, hexCode: standardizeColor(this.color.name) }])
+        this.$emit('update-shades', [...this.color.shades, { name: '', hexCode: standardizeColor(this.color.name) }])
       }
     }
   }
