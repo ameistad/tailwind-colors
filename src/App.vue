@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     handleAddColor (color) {
-      this.colors.unshift(color)
+      this.colors = [color, ...this.colors]
     },
     handleUpdateColor (color) {
       this.$set(this.colors, color.index, color)
