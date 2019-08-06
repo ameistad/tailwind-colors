@@ -70,15 +70,13 @@ export default {
   },
   methods: {
     handleSelectLocalConfig () {
-      function configParse (text) {
-        text = text.replace(/module.exports = /, '')
-        /* eslint-disable no-new-func */
-        return Function('return (' + text + ')')()
-      }
       const file = event.target.files[0]
       const fileReader = new FileReader()
       fileReader.onload = (event) => {
-        const config = configParse(event.target.result)
+        let config = fileReader.result.toString()
+        config = config.replace(/require\(.+?\)/g, '')
+        /* eslint no-eval: 0 */
+        config = eval(config)
         const colorConfig = createColorArray(config.theme.hasOwnProperty('extend') ? config.theme.extend.colors : config.theme.colors)
         this.$emit('add-config', colorConfig)
       }
