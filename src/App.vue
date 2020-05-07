@@ -3,16 +3,7 @@
     <header class="flex justify-between items-center my-12">
       <div class="flex items-center">
         <logo class="w-6 h-6 md:w-12 md:h-12 mr-2" />
-        <h1 class="text-xl md:text-4xl font-semibold">tailwind colors</h1>
-      </div>
-      <div>
-        <a
-          href="https://twitter.com/ameistad?ref_src=twsrc%5Etfw"
-          class="twitter-follow-button"
-          data-size="large"
-          data-show-count="false"
-          >Follow @ameistad</a
-        >
+        <h1 class="text-xl md:text-4xl font-bold">Tailwind colors</h1>
       </div>
     </header>
 
@@ -37,11 +28,33 @@
         <color-config :colors="colors" @add-config="handleAddConfig" />
       </div>
     </div>
-    <footer class="py-8 text-center">
-      <p class="text-sm my-4">
-        Post issues at the
+    <footer class="flex flex-col md:flex-row justify-between py-12 px-4">
+      <div class="flex">
+        <div class="mr-4">
+          <a
+            href="https://twitter.com/ameistad?ref_src=twsrc%5Etfw"
+            class="twitter-follow-button"
+            data-via="ameistad"
+            data-related="tailwindcss"
+            data-show-count="false"
+            >Follow @ameistad</a
+          >
+        </div>
+        <div>
+          <a
+            href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+            class="twitter-share-button"
+            data-via="ameistad"
+            data-related="tailwindcss"
+            data-show-count="false"
+            >Tweet</a
+          >
+        </div>
+      </div>
+      <div class="text-sm">
+        Post issues and feedback at the
         <a href="https://www.github.com/ameistad/tailwind-colors" class="underline text-blue-800">Github repository</a>.
-      </p>
+      </div>
     </footer>
   </main>
 </template>
