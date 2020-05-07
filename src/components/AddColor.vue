@@ -5,26 +5,15 @@
         class="inline-flex items-center focus:outline-none font-semibold"
         @click="$emit('add-color', { name: 'empty', shades: [] })"
       >
-        <icon-base
-          height="20"
-          width="20"
-        >
+        <icon-base height="20" width="20">
           <icon-add />
         </icon-base>
         Color
       </button>
     </div>
-    <dropdown
-      trigger-css-class="inline-flex items-center focus:outline-none"
-      :close-when-clicked="true"
-    >
-      <template
-        slot="dropdown-trigger"
-      >
-        <icon-base
-          height="20"
-          width="20"
-        >
+    <dropdown trigger-css-class="inline-flex items-center focus:outline-none" :close-when-clicked="true">
+      <template slot="dropdown-trigger">
+        <icon-base height="20" width="20">
           <icon-add />
         </icon-base>
         <span class="font-semibold">
@@ -32,12 +21,9 @@
         </span>
       </template>
       <template slot="dropdown-content">
-        <div  class="bg-white rounded shadow">
+        <div class="bg-white rounded shadow">
           <ul>
-            <li
-              v-for="color in defaultColors"
-              :key="color.name"
-            >
+            <li v-for="color in defaultColors" :key="color.name">
               <button
                 @click="$emit('add-color', { name: color.name, shades: [...color.shades] })"
                 class="flex flex-col focus:outline-none hover:bg-gray-200 py-2 px-4 w-full"
@@ -74,7 +60,7 @@ export default {
     IconBase,
     IconAdd
   },
-  data () {
+  data() {
     return {
       defaultColors
     }

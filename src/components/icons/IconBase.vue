@@ -9,10 +9,7 @@
     role="presentation"
     @click="$emit('click')"
   >
-    <title
-      :id="iconName"
-      lang="en"
-    >
+    <title :id="iconName" lang="en">
       {{ iconName }}
     </title>
     <g :fill="iconColor">

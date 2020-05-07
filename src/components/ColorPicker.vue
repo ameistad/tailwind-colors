@@ -1,20 +1,10 @@
 <template>
   <dropdown>
     <template slot="dropdown-trigger">
-      <input
-        :value="value"
-        type="text"
-        @input="$emit('input', $event.target.value)"
-        class="focus:outline-none"
-      >
+      <input :value="value" type="text" @input="$emit('input', $event.target.value)" class="focus:outline-none" />
     </template>
     <template slot="dropdown-content">
-      <sketch
-        :value="value"
-        :presetColors="presetColors"
-        class="color-picker"
-        @input="handleInput"
-      />
+      <sketch :value="value" :presetColors="presetColors" class="color-picker" @input="handleInput" />
     </template>
   </dropdown>
 </template>
@@ -24,7 +14,7 @@ import Dropdown from '@/components/Dropdown'
 import { Sketch } from 'vue-color'
 import defaultConfig from '@/data/defaultConfig'
 
-function getPresetColorsFromConfig (config) {
+function getPresetColorsFromConfig(config) {
   let presetColors = []
   for (const color in config) {
     switch (typeof config[color]) {
@@ -51,13 +41,13 @@ export default {
       required: true
     }
   },
-  data () {
+  data() {
     return {
       presetColors: getPresetColorsFromConfig(defaultConfig)
     }
   },
   methods: {
-    handleInput (color) {
+    handleInput(color) {
       this.$emit('input', color.hex)
     }
   }

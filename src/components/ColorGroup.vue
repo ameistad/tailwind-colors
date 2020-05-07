@@ -2,12 +2,7 @@
   <div class="mr-6 bg-white rounded p-4">
     <div class="md:flex md:justify-between md:pr-20 mb-6">
       <div class="flex items-center mb-2 md:mb-0">
-        <icon-base
-          id="color-draggable-handle"
-          height="25"
-          width="25"
-          class="mt-2"
-        >
+        <icon-base id="color-draggable-handle" height="25" width="25" class="mt-2">
           <icon-drag />
         </icon-base>
         <input
@@ -19,30 +14,16 @@
         />
       </div>
       <div class="flex items-center">
-        <add-shade
-          :color="color"
-          @update-shades="handleUpdateShades"
-        />
-        <button
-          @click="$emit('delete', color.index)"
-          class="flex items-center"
-        >
-          <icon-base
-            icon-name="Delete"
-            height="20"
-            width="20 "
-          >
+        <add-shade :color="color" @update-shades="handleUpdateShades" />
+        <button @click="$emit('delete', color.index)" class="flex items-center">
+          <icon-base icon-name="Delete" height="20" width="20 ">
             <icon-delete />
           </icon-base>
           <span class="text-sm">Delete Color</span>
         </button>
       </div>
     </div>
-    <draggable
-      v-model="shades"
-      handle="#shade-draggable-handle"
-      class="flex flex-wrap"
-    >
+    <draggable v-model="shades" handle="#shade-draggable-handle" class="flex flex-wrap">
       <color-shade
         v-for="(shade, index) in color.shades"
         :key="index"
@@ -63,7 +44,7 @@ import IconBase from '@/components/icons/IconBase'
 import IconDrag from '@/components/icons/IconDrag'
 import IconDelete from '@/components/icons/IconDelete'
 
-function capitalize (str) {
+function capitalize(str) {
   return str ? str.charAt(0).toUpperCase() + str.slice(1) : ''
 }
 
@@ -86,31 +67,39 @@ export default {
       required: true
     }
   },
-  data () {
+  data() {
     return {
       focus: false
     }
   },
   computed: {
     name: {
-      get () { return this.focus ? this.color.name : capitalize(this.color.name) },
-      set (name) { this.$emit('update-color', { ...this.color, name }) }
+      get() {
+        return this.focus ? this.color.name : capitalize(this.color.name)
+      },
+      set(name) {
+        this.$emit('update-color', { ...this.color, name })
+      }
     },
     shades: {
-      get () { return this.color.shades },
-      set (shades) { this.$emit('update-shades', { colorIndex: this.color.index, shades }) }
+      get() {
+        return this.color.shades
+      },
+      set(shades) {
+        this.$emit('update-shades', { colorIndex: this.color.index, shades })
+      }
     }
   },
   methods: {
-    handleUpdateShade (shade) {
+    handleUpdateShade(shade) {
       const shades = [...this.color.shades]
       shades[shade.index] = shade
       this.$emit('update-shades', { colorIndex: this.color.index, shades })
     },
-    handleUpdateShades (shades) {
+    handleUpdateShades(shades) {
       this.$emit('update-shades', { colorIndex: this.color.index, shades })
     },
-    handleDeleteShade (shadeIndex) {
+    handleDeleteShade(shadeIndex) {
       this.color.shades.splice(shadeIndex, 1)
       this.$emit('update-color', this.color)
     }

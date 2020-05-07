@@ -1,10 +1,6 @@
 <template>
   <div>
-    <button
-      ref="trigger"
-      :class="triggerCssClass"
-      @click="open"
-    >
+    <button ref="trigger" :class="triggerCssClass" @click="open">
       <slot name="dropdown-trigger" />
     </button>
     <div
@@ -44,12 +40,12 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       isOpen: false
     }
   },
-  mounted () {
+  mounted() {
     const clickOutsideContentHandler = event => {
       if (event.target === this.$el || this.$el.contains(event.target)) {
         return
@@ -61,11 +57,11 @@ export default {
       document.removeEventListener('click', clickOutsideContentHandler)
     })
   },
-  beforeDestroyed () {
+  beforeDestroyed() {
     this.popper.destroy()
   },
   methods: {
-    open () {
+    open() {
       this.isOpen = !this.isOpen
       if (this.isOpen) {
         this.$nextTick(() => {
@@ -74,7 +70,7 @@ export default {
         })
       }
     },
-    setupPopper () {
+    setupPopper() {
       if (this.isOpen) {
         if (this.popper === undefined) {
           this.popper = new Popper(this.$refs.trigger, this.$refs.content, {
@@ -85,7 +81,7 @@ export default {
         }
       }
     },
-    handleContentClick () {
+    handleContentClick() {
       if (this.closeWhenClicked) {
         this.$nextTick(() => {
           this.isOpen = false
@@ -97,20 +93,20 @@ export default {
 </script>
 
 <style scoped>
-  [x-arrow] {
-    position: absolute;
-  }
-  .dropdown-content {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-  .dropdown-content[x-placement^="top"] {
-    border: 1px solid green;
-  }
-  .dropdown-content[x-placement^="bottom"] [x-arrow] {
-    top: -5px;
-    border-bottom: 5px solid #474747;
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
-  }
+[x-arrow] {
+  position: absolute;
+}
+.dropdown-content {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.dropdown-content[x-placement^='top'] {
+  border: 1px solid green;
+}
+.dropdown-content[x-placement^='bottom'] [x-arrow] {
+  top: -5px;
+  border-bottom: 5px solid #474747;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
 </style>

@@ -3,9 +3,7 @@
     trigger-css-class="inline-flex items-center focus:outline-none focus:shadow-outline mr-2"
     :close-when-clicked="true"
   >
-    <template
-      slot="dropdown-trigger"
-    >
+    <template slot="dropdown-trigger">
       Load
     </template>
     <template slot="dropdown-content">
@@ -27,13 +25,7 @@
           </button>
         </li>
       </ul>
-      <input
-          hidden
-          ref="selectConfig"
-          type="file"
-          accept="text/javascript"
-          @change="handleSelectLocalConfig"
-      >
+      <input hidden ref="selectConfig" type="file" accept="text/javascript" @change="handleSelectLocalConfig" />
     </template>
   </dropdown>
 </template>
@@ -42,7 +34,7 @@
 import Dropdown from '@/components/Dropdown'
 import defaultConfig from '@/data/defaultConfig'
 
-function createColorArray (colors) {
+function createColorArray(colors) {
   const inputColors = []
   for (const color in colors) {
     if (typeof colors[color] === 'object') {
@@ -62,22 +54,24 @@ export default {
   components: {
     Dropdown
   },
-  data () {
+  data() {
     return {
       defaultConfig,
       loadedConfig: {}
     }
   },
   methods: {
-    handleSelectLocalConfig () {
+    handleSelectLocalConfig() {
       const file = event.target.files[0]
       const fileReader = new FileReader()
-      fileReader.onload = (event) => {
+      fileReader.onload = event => {
         let config = fileReader.result.toString()
         config = config.replace(/require\(.+?\)/g, '')
         /* eslint no-eval: 0 */
         config = eval(config)
-        const colorConfig = createColorArray(config.theme.hasOwnProperty('extend') ? config.theme.extend.colors : config.theme.colors)
+        const colorConfig = createColorArray(
+          config.theme.hasOwnProperty('extend') ? config.theme.extend.colors : config.theme.colors
+        )
         this.$emit('add-config', colorConfig)
       }
       fileReader.readAsText(file)

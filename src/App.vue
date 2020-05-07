@@ -6,13 +6,13 @@
         <h1 class="text-xl md:text-4xl font-semibold">tailwind colors</h1>
       </div>
       <div>
-        <a href="https://github.com/ameistad/tailwind-colors">
-          <icon-base
-          icon-name="Github"
-          >
-            <icon-github />
-          </icon-base>
-        </a>
+        <a
+          href="https://twitter.com/ameistad?ref_src=twsrc%5Etfw"
+          class="twitter-follow-button"
+          data-size="large"
+          data-show-count="false"
+          >Follow @ameistad</a
+        >
       </div>
     </header>
 
@@ -21,10 +21,7 @@
         <div class="mb-6">
           <add-color @add-color="handleAddColor" />
         </div>
-        <draggable
-          v-model="colors"
-          handle="#color-draggable-handle"
-        >
+        <draggable v-model="colors" handle="#color-draggable-handle">
           <color-group
             v-for="(color, index) in colors"
             :key="index"
@@ -37,25 +34,13 @@
         </draggable>
       </div>
       <div class="md:1/2 lg:w-1/3">
-        <color-config
-          :colors="colors"
-          @add-config="handleAddConfig"
-        />
+        <color-config :colors="colors" @add-config="handleAddConfig" />
       </div>
     </div>
     <footer class="py-8 text-center">
-      <a
-        href="https://www.meidev.co"
-      >
-        <icon-base
-          height="15"
-          width="15"
-        >
-          <icon-meidev />
-        </icon-base>
-      </a>
       <p class="text-sm my-4">
-        Comments and issues are very welcome, post them at <a href="https://www.github.com/ameistad/tailwind-colors" class="underline text-blue-800">Github repository</a>.
+        Post issues at the
+        <a href="https://www.github.com/ameistad/tailwind-colors" class="underline text-blue-800">Github repository</a>.
       </p>
     </footer>
   </main>
@@ -67,9 +52,6 @@ import Logo from '@/components/Logo'
 import ColorGroup from '@/components/ColorGroup'
 import ColorConfig from '@/components/ColorConfig'
 import AddColor from '@/components/AddColor'
-import IconBase from '@/components/icons/IconBase'
-import IconGithub from '@/components/icons/IconGithub'
-import IconMeidev from '@/components/icons/IconMeidev'
 
 export default {
   name: 'app',
@@ -78,34 +60,31 @@ export default {
     Logo,
     ColorGroup,
     ColorConfig,
-    AddColor,
-    IconBase,
-    IconGithub,
-    IconMeidev
+    AddColor
   },
-  data () {
+  data() {
     return {
       colors: []
     }
   },
   methods: {
-    handleAddColor (color) {
+    handleAddColor(color) {
       this.colors = [color, ...this.colors]
     },
-    handleUpdateColor (color) {
+    handleUpdateColor(color) {
       this.$set(this.colors, color.index, color)
     },
-    handleUpdateShades ({ colorIndex, shades }) {
+    handleUpdateShades({ colorIndex, shades }) {
       this.colors[colorIndex].shades = shades
     },
-    handleDelete (colorIndex) {
+    handleDelete(colorIndex) {
       this.colors.splice(colorIndex, 1)
     },
-    handleAddConfig (colors) {
+    handleAddConfig(colors) {
       this.colors = [...colors, ...this.colors]
     }
   },
-  mounted () {
+  mounted() {
     this.$ga.page('/')
   }
 }

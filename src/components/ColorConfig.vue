@@ -19,22 +19,17 @@
       </div>
       <div class="flex items-center">
         <load-config @add-config="handleAddConfig" />
-        <button
-          class="mr-2 focus:outline-none focus:shadow-outline"
-          @click="copyTailwindConfig"
-        >
+        <button class="mr-2 focus:outline-none focus:shadow-outline" @click="copyTailwindConfig">
           Copy
         </button>
-        <button
-          class="focus:outline-none focus:shadow-outline"
-          @click="saveTailwindConfig">
+        <button class="focus:outline-none focus:shadow-outline" @click="saveTailwindConfig">
           Save
         </button>
       </div>
     </div>
     <prism language="javascript">
-// tailwind.config.js
-{{ tailwindConfig }}
+      // tailwind.config.js
+      {{ tailwindConfig }}
     </prism>
   </div>
 </template>
@@ -43,9 +38,9 @@
 import Prism from 'vue-prism-component'
 import LoadConfig from '@/components/LoadConfig'
 
-function createTailwindConfig (colors, options) {
+function createTailwindConfig(colors, options) {
   // Add whitespace
-  function addW (str, w) {
+  function addW(str, w) {
     return str.padStart(str.length + w)
   }
 
@@ -68,7 +63,10 @@ function createTailwindConfig (colors, options) {
     } else {
       colorConfig += ': {\n'
       color.shades.forEach((shade, index) => {
-        colorConfig += addW(`${shade.name}: '${shade.hexCode}'${index === color.shades.length - 1 ? '' : ','}\n`, indent + 4)
+        colorConfig += addW(
+          `${shade.name}: '${shade.hexCode}'${index === color.shades.length - 1 ? '' : ','}\n`,
+          indent + 4
+        )
       })
       colorConfig += addW(`}${index === colors.length - 1 ? '' : ','}\n`, indent + 2)
     }
@@ -93,32 +91,32 @@ export default {
       required: true
     }
   },
-  data () {
+  data() {
     return {
       override: true
     }
   },
   computed: {
-    tailwindConfig () {
+    tailwindConfig() {
       return createTailwindConfig(this.colors, { override: this.override })
     }
   },
   methods: {
-    async copyTailwindConfig () {
+    async copyTailwindConfig() {
       try {
         await navigator.clipboard.writeText(this.tailwindConfig)
       } catch (error) {
         alert(error)
       }
     },
-    saveTailwindConfig () {
+    saveTailwindConfig() {
       const file = new Blob([this.tailwindConfig], { type: 'text/plain' })
       const element = document.createElement('a')
       element.href = URL.createObjectURL(file)
       element.download = `tailwind.config.js`
       element.click()
     },
-    handleAddConfig (config) {
+    handleAddConfig(config) {
       this.$emit('add-config', config)
     }
   }
