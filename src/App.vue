@@ -65,6 +65,9 @@ import Logo from '@/components/Logo'
 import ColorGroup from '@/components/ColorGroup'
 import ColorConfig from '@/components/ColorConfig'
 import AddColor from '@/components/AddColor'
+import JsonUrl from 'json-url'
+
+const codec = JsonUrl('lzma')
 
 export default {
   name: 'app',
@@ -81,24 +84,58 @@ export default {
     }
   },
   methods: {
+    updateUrl() {
+      const search = new window.URLSearchParams(window.location.search)
+
+      codec.compress(this.colors).then(currentState => {
+        search.set('state', currentState)
+        const url = new URL(window.location.href)
+        url.search = '?' + search.toString()
+
+        const path = url.toString()
+
+        window.history.replaceState({ path }, document.title, path)
+      })
+    },
+    checkUrl() {
+      const search = new window.URLSearchParams(window.location.search)
+      const urlState = Object.fromEntries(search.entries()).state || null
+      if (!urlState) {
+        return
+      }
+
+      codec.decompress(urlState).then(json => {
+        try {
+          this.colors = json
+        } catch (e) {
+          console.error(e)
+        }
+      })
+    },
     handleAddColor(color) {
       this.colors = [color, ...this.colors]
+      this.updateUrl()
     },
     handleUpdateColor(color) {
       this.$set(this.colors, color.index, color)
+      this.updateUrl()
     },
     handleUpdateShades({ colorIndex, shades }) {
       this.colors[colorIndex].shades = shades
+      this.updateUrl()
     },
     handleDelete(colorIndex) {
       this.colors.splice(colorIndex, 1)
+      this.updateUrl()
     },
     handleAddConfig(colors) {
       this.colors = [...colors, ...this.colors]
+      this.updateUrl()
     }
   },
   mounted() {
     this.$ga.page('/')
+    this.checkUrl()
   }
 }
 </script>
