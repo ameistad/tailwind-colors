@@ -52,8 +52,8 @@
         </div>
       </div>
       <div class="text-sm">
-        Post issues and feedback at the
-        <a href="https://www.github.com/ameistad/tailwind-colors" class="underline text-blue-800">Github repository</a>.
+        Post issues and feedback on
+        <a href="https://www.github.com/ameistad/tailwind-colors" class="underline text-blue-800">Github</a>.
       </div>
     </footer>
   </main>
@@ -76,18 +76,18 @@ export default {
     Logo,
     ColorGroup,
     ColorConfig,
-    AddColor
+    AddColor,
   },
   data() {
     return {
-      colors: []
+      colors: [],
     }
   },
   methods: {
     updateUrl() {
       const search = new window.URLSearchParams(window.location.search)
 
-      codec.compress(this.colors).then(currentState => {
+      codec.compress(this.colors).then((currentState) => {
         search.set('state', currentState)
         const url = new URL(window.location.href)
         url.search = '?' + search.toString()
@@ -104,7 +104,7 @@ export default {
         return
       }
 
-      codec.decompress(urlState).then(json => {
+      codec.decompress(urlState).then((json) => {
         try {
           this.colors = json
         } catch (e) {
@@ -131,11 +131,11 @@ export default {
     handleAddConfig(colors) {
       this.colors = [...colors, ...this.colors]
       this.updateUrl()
-    }
+    },
   },
   mounted() {
     this.$ga.page('/')
     this.checkUrl()
-  }
+  },
 }
 </script>
