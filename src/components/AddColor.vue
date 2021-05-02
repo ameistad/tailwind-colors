@@ -29,7 +29,7 @@
                 class="flex flex-col focus:outline-none hover:bg-gray-200 py-2 px-4 w-full"
               >
                 <b class="text-sm font-semibold">
-                  {{ color ? color.name.charAt(0).toUpperCase() + color.name.slice(1) : '' }}
+                  {{ color.name || '' }}
                 </b>
                 <ul class="flex">
                   <li

@@ -44,10 +44,6 @@ import IconBase from '@/components/icons/IconBase'
 import IconDrag from '@/components/icons/IconDrag'
 import IconDelete from '@/components/icons/IconDelete'
 
-function capitalize(str) {
-  return str ? str.charAt(0).toUpperCase() + str.slice(1) : ''
-}
-
 export default {
   components: {
     Draggable,
@@ -75,7 +71,7 @@ export default {
   computed: {
     name: {
       get() {
-        return this.focus ? this.color.name : capitalize(this.color.name)
+        return this.color.name
       },
       set(name) {
         this.$emit('update-color', { ...this.color, name })
