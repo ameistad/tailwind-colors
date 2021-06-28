@@ -11,7 +11,7 @@
     "core-js": "^3.1.4",
     "json-url": "^2.6.0",
     "popper.js": "^1.15.0",
-    "prismjs": "^1.23.0",
+    "prismjs": "^1.24.0",
     "vue": "^2.6.10",
     "vue-analytics": "^5.17.0",
     "vue-color": "^2.7.0",
